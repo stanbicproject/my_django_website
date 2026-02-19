@@ -2,158 +2,611 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ==================== META TAGS ==================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
-    <link rel="stylesheet" href="{% static 'myprofile/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Emmanuel Muganzi - Full-Stack Developer | Django & React Specialist</title>
+    <meta name="description" content="Full-stack developer specializing in Django, React, and modern web technologies. Building secure voting systems, e-commerce platforms, and innovative web applications.">
+    <meta name="keywords" content="Full-Stack Developer, Django Developer, React Developer, Web Development, Software Engineer, Emmanuel Muganzi">
+    <meta name="author" content="Emmanuel Muganzi">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emmanuelmuganzi.com/">
+    <meta property="og:title" content="Emmanuel Muganzi - Full-Stack Developer">
+    <meta property="og:description" content="Building modern web applications with Django, React, and cutting-edge technologies.">
+    <meta property="og:image" content="{% static 'myprofile/og-image.jpg' %}">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://emmanuelmuganzi.com/">
+    <meta property="twitter:title" content="Emmanuel Muganzi - Full-Stack Developer">
+    <meta property="twitter:description" content="Building modern web applications with Django, React, and cutting-edge technologies.">
+    <meta property="twitter:image" content="{% static 'myprofile/twitter-card.jpg' %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'myprofile/favicon.svg' %}">
+    <link rel="canonical" href="https://emmanuelmuganzi.com/">
+    
+    <!-- ==================== FONTS ==================== -->
+    <!-- Google Fonts: Inter (body) + Poppins (headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- ==================== STYLES ==================== -->
+    <link rel="stylesheet" href="{% static 'myprofile/style_modern.css' %}">
+    
+    <!-- ==================== STRUCTURED DATA (SEO) ==================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Emmanuel Muganzi",
+      "jobTitle": "Full-Stack Developer",
+      "url": "https://emmanuelmuganzi.com",
+      "sameAs": [
+        "https://github.com/Emmanuel-elc",
+        "https://www.linkedin.com/in/muganzi-emmanuel"
+      ],
+      "knowsAbout": ["Web Development", "Django", "React", "JavaScript", "Python", "Full-Stack Development"]
+    }
+    </script>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav>
-    <div class="container">
-        <h1 class="logo">Emmanuel Muganzi</h1>
-        <ul class="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'projects' %}">Projects</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
-        </ul>
-    </div>
-</nav>
-
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h2>Welcome to My Profile</h2>
-            <p>Hello! I am Emmanuel Muganzi, a passionate developer and technology enthusiast. Explore my work and feel free to contact me!</p>
-            <a href="#contact" class="btn">Get in Touch</a>
+    <!-- ==================== SKIP TO CONTENT (ACCESSIBILITY) ==================== -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container navbar__container">
+            <a href="{% url 'home' %}" class="navbar__logo" aria-label="Emmanuel Muganzi - Home">
+                Emmanuel Muganzi
+            </a>
+            
+            <ul class="navbar__menu" role="list">
+                <li><a href="{% url 'home' %}" class="navbar__link navbar__link--active">Home</a></li>
+                <li><a href="#projects" class="navbar__link">Projects</a></li>
+                <li><a href="#contact" class="navbar__link">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg class="moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar__hamburger" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>I love building web applications, learning new technologies, and sharing knowledge. I am always looking for exciting opportunities to grow and contribute.</p>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Project 1: Secure Voting System</h3>
-                    <p>Developed a web-based voting platform using Node.js and Express. Features include voter login, admin dashboard for poll creation, real-time results with charts, and poll expiration.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Project 2: E-Commerce Website</h3>
-                    <p>Created a fully functional e-commerce website using Django and React, with user authentication, product listings, shopping cart, and payment integration via Stripe.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Project 3: Student Magazine</h3>
-                    <p>Designed a student magazine showcasing creative writing, motivational quotes, poems, Bible verses, leadership pieces, and humor. Promotes creativity and inspiration within the school.</p>
+    </nav>
+    
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="main-content">
+        
+        <!-- ==================== HERO SECTION ==================== -->
+        <section class="hero" aria-label="Hero section">
+            <div class="hero__content">
+                <p class="hero__greeting">Hi there, I'm</p>
+                <h1 class="hero__title">
+                    Emmanuel Muganzi
+                    <span class="hero__title-accent">Full-Stack Developer</span>
+                </h1>
+                <p class="hero__subtitle">
+                    Passionate about building modern web experiences with Django, React, and cutting-edge technologies. 
+                    I create scalable, secure, and user-friendly applications that solve real-world problems.
+                </p>
+                <div class="hero__cta">
+                    <a href="#projects" class="btn btn--primary">
+                        View My Work
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn btn--secondary">
+                        Get In Touch
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-<section id="contact" class="section contact-section">
-    <div class="container">
-        <h2>Contact Me</h2>
-        <div class="social-links">
-            <a href="tel:+256700000000" target="_blank" class="social-link">Phone</a>
-            <a href="https://www.linkedin.com/in/muganzi-emmanuel" target="_blank" class="social-link">LinkedIn</a>
-            <a href="https://github.com/Emmanuel-elc" target="_blank" class="social-link">GitHub</a>
-            <button id="show-contact-form" class="social-link">Email</button>
-        </div>
-        <div id="contact-form-wrapper" class="contact-form-container" style="display: none;">
-            <form id="contact-form" method="post" action="{% url 'contact' %}">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+            
+            <!-- Scroll Indicator -->
+            <div class="hero__scroll-indicator">
+                <span>Scroll</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+        
+        <!-- ==================== ABOUT SECTION ==================== -->
+        <section id="about" class="section fade-in" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__label">About Me</span>
+                    <h2 id="about-title" class="section__title">Building the Future, One Line of Code at a Time</h2>
+                    <p class="section__description">
+                        I'm a full-stack developer with a passion for creating innovative web solutions. 
+                        I love building web applications, learning new technologies, and sharing knowledge 
+                        with the developer community. Always looking for exciting opportunities to grow, 
+                        contribute, and make a meaningful impact.
+                    </p>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+            </div>
+        </section>
+        
+        <!-- ==================== PROJECTS SECTION ==================== -->
+        <section id="projects" class="section fade-in" aria-labelledby="projects-title">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__label">My Work</span>
+                    <h2 id="projects-title" class="section__title">Featured Projects</h2>
+                    <p class="section__description">
+                        A selection of projects that showcase my skills in full-stack development, 
+                        from secure voting systems to e-commerce platforms.
+                    </p>
                 </div>
-                <div class="form-group">
-                    <label for="subject">Subject:</label>
-                    <input type="text" id="subject" name="subject" required>
+                
+                <div class="projects-grid">
+                    <!-- Project 1: Secure Voting System -->
+                    <article class="project-card fade-in">
+                        <div class="project-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="project-card__title">Secure Voting System</h3>
+                        <p class="project-card__description">
+                            A robust web-based voting platform built with Node.js and Express. 
+                            Features include secure voter authentication, admin dashboard for poll creation, 
+                            real-time results visualization with charts, and automatic poll expiration.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">Express</span>
+                            <span class="tech-badge">MongoDB</span>
+                            <span class="tech-badge">Chart.js</span>
+                        </div>
+                        <div class="project-card__links">
+                            <a href="#" class="project-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/Emmanuel-elc" class="project-link" target="_blank" rel="noopener">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 2: E-Commerce Website -->
+                    <article class="project-card fade-in">
+                        <div class="project-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="project-card__title">E-Commerce Platform</h3>
+                        <p class="project-card__description">
+                            Full-featured e-commerce website built with Django and React. 
+                            Includes user authentication, product catalog with search and filters, 
+                            shopping cart functionality, and secure payment integration via Stripe.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-badge">Django</span>
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">Stripe</span>
+                            <span class="tech-badge">Redis</span>
+                        </div>
+                        <div class="project-card__links">
+                            <a href="#" class="project-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/Emmanuel-elc" class="project-link" target="_blank" rel="noopener">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 3: Student Magazine -->
+                    <article class="project-card fade-in">
+                        <div class="project-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h3 class="project-card__title">Student Magazine Platform</h3>
+                        <p class="project-card__description">
+                            Digital magazine platform showcasing student creative writing, motivational content, 
+                            poems, Bible verses, leadership articles, and humor. Built to promote creativity 
+                            and inspiration within the school community.
+                        </p>
+                        <div class="project-card__tech">
+                            <span class="tech-badge">HTML5</span>
+                            <span class="tech-badge">CSS3</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Firebase</span>
+                        </div>
+                        <div class="project-card__links">
+                            <a href="#" class="project-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/Emmanuel-elc" class="project-link" target="_blank" rel="noopener">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </article>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+        </section>
+        
+        <!-- ==================== CONTACT SECTION ==================== -->
+        <section id="contact" class="section contact-section fade-in" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__label">Get In Touch</span>
+                    <h2 id="contact-title" class="section__title">Let's Work Together</h2>
+                    <p class="section__description">
+                        Have a project in mind or just want to chat about technology? 
+                        I'd love to hear from you. Feel free to reach out through any of these channels.
+                    </p>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-                <div id="form-status" class="status-message"></div>
-            </form>
-        </div>
-    </div>
-</section>
-
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contact-form');
-    const statusDiv = document.getElementById('form-status');
-    const showFormBtn = document.getElementById('show-contact-form');
-    const formWrapper = document.getElementById('contact-form-wrapper');
+                
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="tel:+256700000000" class="social-link" aria-label="Call me">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        Phone
+                    </a>
+                    <a href="https://www.linkedin.com/in/muganzi-emmanuel" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/Emmanuel-elc" target="_blank" rel="noopener" class="social-link" aria-label="GitHub profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                    <button id="show-contact-form" class="social-link" aria-label="Show email form">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Email Me
+                    </button>
+                </div>
+                
+                <!-- Contact Form (Hidden by default) -->
+                <div id="contact-form-wrapper" class="contact-form-container" style="display: none;">
+                    <form id="contact-form" method="post" action="{% url 'contact' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                placeholder="John Doe" 
+                                required 
+                                aria-required="true"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="john@example.com" 
+                                required 
+                                aria-required="true"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input 
+                                type="text" 
+                                id="subject" 
+                                name="subject" 
+                                placeholder="Project Inquiry" 
+                                required 
+                                aria-required="true"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="5" 
+                                placeholder="Tell me about your project..." 
+                                required 
+                                aria-required="true"
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <span id="btn-text">Send Message</span>
+                            <span id="btn-spinner" class="spinner" style="display: none;"></span>
+                        </button>
+                        <div id="form-status" class="status-message" role="alert" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+    </main>
     
-    // Handle "Contact Me" button click
-    showFormBtn.addEventListener('click', function() {
-        formWrapper.style.display = 'block';
-        showFormBtn.style.display = 'none';
-        formWrapper.scrollIntoView({ behavior: 'smooth' });
-    });
-
-    // Also show form when clicking "Get in Touch" from hero section
-    document.querySelector('.hero .btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        showFormBtn.style.display = 'none';
-        formWrapper.style.display = 'block';
-        formWrapper.scrollIntoView({ behavior: 'smooth' });
-    });
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        statusDiv.textContent = 'Sending...';
-
-        const formData = new FormData(form);
-        const payload = new URLSearchParams(formData);
-
-        fetch('{% url "contact" %}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRFToken': '{{ csrf_token }}'
-            },
-            body: payload.toString()
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                statusDiv.textContent = 'Message sent successfully!';
-                statusDiv.style.color = 'green';
-                form.reset();
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3>Emmanuel Muganzi</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7);">
+                        Full-Stack Developer passionate about creating innovative web solutions.
+                    </p>
+                </div>
+                
+                <div class="footer__section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer__links" role="list">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h3>Connect</h3>
+                    <ul class="footer__links" role="list">
+                        <li><a href="https://github.com/Emmanuel-elc" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/muganzi-emmanuel" target="_blank" rel="noopener">LinkedIn</a></li>
+                        <li><a href="tel:+256700000000">Phone</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2025 Emmanuel Muganzi. All rights reserved. Built with Django & ❤️</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ==================== MODERN JAVASCRIPT (ES6+) ====================
+        
+        // ========== THEME TOGGLE (DARK MODE) ==========
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        const htmlEl = document.documentElement;
+        
+        // Get saved theme or detect system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        
+        // Apply initial theme
+        htmlEl.setAttribute('data-theme', initialTheme);
+        updateThemeIcons(initialTheme);
+        
+        function updateThemeIcons(theme) {
+            if (theme === 'dark') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
             } else {
-                statusDiv.textContent = data.error || 'Failed to send message.';
-                statusDiv.style.color = 'red';
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
             }
-        })
-        .catch(error => {
-            statusDiv.textContent = 'An error occurred. Please try again.';
-            statusDiv.style.color = 'red';
-            console.error('Error:', error);
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlEl.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcons(newTheme);
         });
-    });
-});
-</script>
+        
+        // ========== NAVBAR SCROLL EFFECT ==========
+        const navbar = document.querySelector('.navbar');
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar--scrolled');
+            } else {
+                navbar.classList.remove('navbar--scrolled');
+            }
+        });
+        
+        // ========== MOBILE MENU ==========
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navbarMenu = document.querySelector('.navbar__menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            const isOpen = navbarMenu.classList.toggle('navbar__menu--open');
+            mobileMenuToggle.setAttribute('aria-expanded', isOpen);
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.navbar__link').forEach(link => {
+            link.addEventListener('click', () => {
+                navbarMenu.classList.remove('navbar__menu--open');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+        
+        // ========== SMOOTH SCROLL ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // ========== SCROLL ANIMATIONS (INTERSECTION OBSERVER) ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add stagger delay for project cards
+                    const delay = entry.target.classList.contains('project-card') ? index * 100 : 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        
+        // ========== ACTIVE NAV LINK HIGHLIGHT ==========
+        const sections = document.querySelectorAll('section[id]');
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                const correspondingLink = document.querySelector(`.navbar__link[href="#${sectionId}"]`);
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    correspondingLink?.classList.add('navbar__link--active');
+                } else {
+                    correspondingLink?.classList.remove('navbar__link--active');
+                }
+            });
+        });
+        
+        // ========== CONTACT FORM ==========
+        const showFormBtn = document.getElementById('show-contact-form');
+        const formWrapper = document.getElementById('contact-form-wrapper');
+        const contactForm = document.getElementById('contact-form');
+        const statusDiv = document.getElementById('form-status');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+        
+        // Show contact form
+        showFormBtn.addEventListener('click', () => {
+            formWrapper.style.display = 'block';
+            showFormBtn.style.display = 'none';
+            formWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        
+        // Also show form when clicking hero CTA
+        document.querySelector('.hero__cta .btn--secondary')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            showFormBtn.style.display = 'none';
+            formWrapper.style.display = 'block';
+            formWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        
+        // Handle form submission
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnSpinner.style.display = 'inline-block';
+            statusDiv.textContent = '';
+            statusDiv.className = 'status-message';
+            
+            const formData = new FormData(contactForm);
+            const payload = new URLSearchParams(formData);
+            
+            try {
+                const response = await fetch('{% url "contact" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: payload.toString()
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    statusDiv.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+                    statusDiv.classList.add('success');
+                    contactForm.reset();
+                } else {
+                    statusDiv.textContent = '✗ ' + (data.error || 'Failed to send message. Please try again.');
+                    statusDiv.classList.add('error');
+                }
+            } catch (error) {
+                statusDiv.textContent = '✗ An error occurred. Please try again later.';
+                statusDiv.classList.add('error');
+                console.error('Error:', error);
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnSpinner.style.display = 'none';
+            }
+        });
+        
+        // ========== PERFORMANCE: LAZY LOAD IMAGES ==========
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // Fallback for browsers that don't support lazy loading
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+            document.body.appendChild(script);
+        }
+    </script>
 </body>
 </html>
